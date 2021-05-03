@@ -1,11 +1,18 @@
 # Project Description
 
-A brief description of what this repository is for and what it contains
+A reproduction of the Baron et. al. paper: "A Single-Cell Transcriptomic Map of the Human and Mouse Pancreas Reveals Inter- and Intra-cell Population Structure."
 
 # Contributors
 
-List contributor names and github user names, or email addresses if desired
+Data Curator: Ledia Gebremedhin
+
+Programmer: Marissa Chiaradio
+
+Analyst: Giulia Digiovanni
+
+Biologist: Rebecca Spirgel
 
 # Repository Contents
 
-Provide a brief description of each script/code file in this repo, what it does, and how to execute it
+programmer2.R - The R script used to complete the programmer's role, quality control on the data.
+VlnPlot.png, VarFeaturePlot.png, elbowplot.png, pie.png, barplot.png - The programmer's output graph images. 
