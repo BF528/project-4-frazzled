@@ -1,0 +1,53 @@
+library("dplyr")
+library("ggplot2")
+library("ggpubr")
+library("gplots")
+library("tidyverse")
+# whitelist
+female_1 <-read.csv("/projectnb/bf528/users/frazzled/project_4/Data_curator/result_extracted_bc/count_female_1.csv", sep = "", col.names = c('barcode','count'))
+female_2 <-read.csv("/projectnb/bf528/users/frazzled/project_4/Data_curator/result_extracted_bc/count_female_2.csv", sep = "", col.names = c('barcode','count'))
+female_3 <- read.csv("/projectnb/bf528/users/frazzled/project_4/Data_curator/result_extracted_bc/count_female_3.csv", sep = "", col.names = c('barcode','count'))
+
+#barplot(height = female_1$count, names.arg = female_1$barcode)
+
+# distribution plot
+head(female_1)
+head(female_2)
+head(female_3)
+plot(ecdf(female_1$count), main = "cumulative distribution plot for scRNA-seq barcode", xlab = "x", ylab = "fn(x)")
+plot(ecdf(female_2$count), main = "cumulative distribution plot for scRNA-seq barcode", xlab = "x", ylab = "fn(x)")
+plot(ecdf(female_3$count), main = "cumulative distribution plot for scRNA-seq barcode", xlab = "x", ylab = "fn(x)")
+
+
+#main = "cumulative distribution plot for scRNA-seq barcode", xlab = "x", ylab = "fn(x)")
+#fn(x)
+
+#removing infrequent barcodes
+female_1 <- female_1 %>% filter(!is.na(count))
+female_2 <- female_2 %>% filter(!is.na(count))
+female_3 <- female_3 %>% filter(!is.na(count))
+
+#mean
+f1_mean <- mean(female_1$count)
+f2_mean <- mean(female_2$count)
+f3_mean <- mean(female_3$count)
+
+#sorting
+list_1 <- female_1 %>% arrange(desc(count))
+list_2 <- female_2 %>% arrange(desc(count))
+list_3 <- female_3 %>% arrange(desc(count))
+
+#filter
+list_1 <- list_1 %>% filter(female_1$count>f1_mean)
+list_2 <- list_2 %>% filter(female_2$count>f2_mean)
+list_3 <- list_3 %>% filter(female_3$count>f3_mean)
+
+list_1 <-as.data.frame(list_1$barcode) 
+list_2 <-data.frame(list_2$barcode) 
+list_3 <-data.frame(list_3$barcode)
+
+
+
+write_csv(list_1, '/projectnb/bf528/users/frazzled/project_4/Data_curator/salmon/whitelist_1.txt', col_names = FALSE)
+write_csv(list_2, '/projectnb/bf528/users/frazzled/project_4/Data_curator/salmon/whitelist_2.txt',col_names = FALSE)
+write_csv(list_3, '/projectnb/bf528/users/frazzled/project_4/Data_curator/salmon/whitelist_3.txt', col_names = FALSE)
