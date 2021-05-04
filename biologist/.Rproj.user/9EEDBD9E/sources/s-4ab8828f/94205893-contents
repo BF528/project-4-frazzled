@@ -1,0 +1,32 @@
+library(enrichR)
+library(dplyr)
+
+dbs <- c("GO_Molecular_Function_2015", "GO_Cellular_Component_2015", "GO_Biological_Process_2015")
+enriched <- enrichr(GSM2230760_marker_genes$gene, databases = dbs)
+
+enriched[[1]]['Source'] = 'Molecular Function'
+enriched[[2]]['Source'] = 'Cellular Component'
+enriched[[3]]['Source'] = 'Biological Process'
+
+all_data = data.frame(rbind(enriched[[1]], enriched[[2]], enriched[[3]]))?
+  sorted_all_data <- all_data[order(all_data$'Adjusted.P.value', decreasing = TRUE),]
+limited_data = sorted_all_data %>% top_n(50)
+
+plotEnrich(limited_data, showTerms = 30, numChar = 40, y = "Count", orderBy = "P.value")
+
+#filtering by high log2
+gene_list_filtered <- GSM2230760_marker_genes[GSM2230760_marker_genes$avg_logFC > 0.5,]
+enriched <- enrichr(gene_list_filtered$gene[1:10], databases = dbs)
+
+enriched[[1]]['Source'] = 'Molecular Function'
+enriched[[2]]['Source'] = 'Cellular Component'
+enriched[[3]]['Source'] = 'Biological Process'
+
+all_data = data.frame(rbind(enriched[[1]], enriched[[2]], enriched[[3]]))?
+  sorted_all_data <- all_data[order(all_data$'Adjusted.P.value', decreasing = TRUE),]
+limited_data = sorted_all_data %>% top_n(50)
+
+plotEnrich(limited_data, showTerms = 30, numChar = 40, y = "Count", orderBy = "P.value")
+
+
+PTSD_BB_cnts

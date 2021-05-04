@@ -1,0 +1,25 @@
+{
+    "id": "BB816280",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1619642526705.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "id": "3df907d830764a48bbdbb3681214c2d9",
+        "name": "ensembl",
+        "title": "ensembl"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2318270133864854132,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1619642526705,
+    "read_only": false,
+    "read_only_alternatives": []
+}
