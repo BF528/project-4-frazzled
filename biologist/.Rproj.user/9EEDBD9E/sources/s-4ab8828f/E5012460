@@ -1,0 +1,32 @@
+{
+    "id": "E5012460",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1619641407923.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "expression": "cell_markers",
+        "caption": "cell_markers",
+        "totalObservations": 6223,
+        "displayedObservations": 6223,
+        "variables": 7,
+        "cacheKey": "89C7E8A7",
+        "object": "cell_markers",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=cell_markers&cache_key=89C7E8A7&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2318270133864854132,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1619641407923,
+    "read_only": false,
+    "read_only_alternatives": []
+}

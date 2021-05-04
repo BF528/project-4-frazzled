@@ -1,0 +1,32 @@
+{
+    "id": "9AA232C8",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1619640198407.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "expression": "Padj_Marker_Genes",
+        "caption": "Padj_Marker_Genes",
+        "totalObservations": 2795,
+        "displayedObservations": 2795,
+        "variables": 7,
+        "cacheKey": "A9B466F5",
+        "object": "Padj_Marker_Genes",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=Padj_Marker_Genes&cache_key=A9B466F5&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 94050809245024,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1619640198407,
+    "read_only": false,
+    "read_only_alternatives": []
+}

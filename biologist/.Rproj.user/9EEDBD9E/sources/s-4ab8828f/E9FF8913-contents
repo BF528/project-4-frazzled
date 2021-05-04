@@ -1,0 +1,47 @@
+install.packages("Seurat")
+library(dplyr)
+library(patchwork)
+library(Seurat)
+library(tidyverse)
+
+#load seurat data 
+cell_data <- readRDS("/projectnb/bf528/users/frazzled/project_4/programmer/pbmc_seurat.rds")
+#find markers 
+#previous format: cell_markers <- FindAllMarkers(cell_data, only.pos = TRUE, min.pct = 0.25, logfc.threshold = 0.25) #%>% 
+#group_by(cluster) %>% 
+#top_n(n = 5, wt = avg_log2FC) This filters the cluster 
+
+cell_markers <- FindAllMarkers(cell_data, only.pos = TRUE,min.pct = 0.1,logfc.threshold = 0.1) 
+#min = 0.5 logfc.threshold =0.1
+
+#take the gene col and export as csv to upload into ensembl to obtain corresponding gene names and give back to programmer to load into
+#seurat object 
+e_genes <- cell_markers["gene"]
+write_csv(e_genes,"Ensembl_GeneID")
+
+#create csv files of all diff genes and diff genes expressed with adj p value <0.05 on find all markers 
+marker_genes<- write_csv(cell_markers,"Marker_Genes")
+padj_marker_genes <- cell_markers[cell_markers$p_val_adj<0.05,]
+padj_genes<- write_csv(padj_marker_genes,"Padj_Marker_Genes")
+
+#run UMAP 
+UMAP_markers <-RunUMAP(cell_data, dims = 1:10) #label by cell type 
+
+DimPlot(UMAP_markers, reduction= "umap", label = TRUE)
+
+#create vector of cluster names 
+cluster_names <- c("Alpha","Beta","Delta","Gamma","Epsilon","Acinar","Ductal","Quiescent steliate","Activated steilate","Endothelial",
+                   "Macrophage","Mast","Cytotoxic T","Schwann")
+
+#pulling top 5 from each cluster  
+top_5 <- cell_markers %>% 
+  group_by(cluster) %>%
+  slice_max(n=5,order_by = avg_log2FC)
+
+DoHeatmap(cell_data, features = top_5$gene) + NoLegend() #not filtering top 10 genes? 
+
+VlnPlot(cell_data, features = c("GCG"), log = TRUE)
+VlnPlot(cell_data,features = c("INS"), log = TRUE)
+
+
+
