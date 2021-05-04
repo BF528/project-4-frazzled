@@ -1,0 +1,10 @@
+#!/bin/bash -l
+#$ -P bf528
+#$ -cwd
+#$ -j y
+#$ -pe mpi_16_tasks_per_node 16
+
+
+awk '{A[$1]++}END{for(i in A)print(i,A[i])}' result_extracted_bc/female1.csv > result_extracted_bc/count_female_1.csv
+awk '{A[$1]++}END{for(i in A)print(i,A[i])}' result_extracted_bc/female2.csv > result_extracted_bc/count_female_2.csv
+awk '{A[$1]++}END{for(i in A)print(i,A[i])}' result_extracted_bc/female3.csv > result_extracted_bc/count_female_3.csv

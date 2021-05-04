@@ -1,0 +1,11 @@
+#!/bin/bash -l
+#$ -P bf528
+#$ -cwd
+#$ -j y
+#$ -pe mpi_16_tasks_per_node 16
+
+
+
+
+zless -S gencode.v37.annotation.gtf.gz | grep -v "#" | awk '$3=="transcript"' | cut -f9 | tr -s ";" " " | awk '{print$4"\t"$2}' |  
+sort | uniq | sed 's/\"//g' | tee txp2gene.tsv
